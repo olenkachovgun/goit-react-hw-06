@@ -1,25 +1,18 @@
-import React from "react";
 import Contact from "../Contact/Contact";
-// import s from "./ContactList.module.css";
+import { useSelector } from "react-redux";
 
-const ContactList = ({ contacts, handleDelete }) => {
+const ContactList = () => {
+  const contacts = useSelector((state) => state.contacts.contacts.items);
+  const filter = useSelector((state) => state.filters.filters);
+  const filterData = contacts.filter((item) =>
+    item.name.toLowerCase().includes(filter.toLowerCase().trim())
+  );
   return (
-    <div>
-      {contacts.length === 0 ? (
-        <p>No contacts, add a new contact.</p>
-      ) : (
-        <ul>
-          {contacts.map((contact) => (
-            <Contact
-              key={contact.id}
-              contact={contact}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </ul>
-      )}
-    </div>
+    <ul>
+      {filterData.map((item) => (
+        <Contact key={item.id} {...item} />
+      ))}
+    </ul>
   );
 };
-
 export default ContactList;

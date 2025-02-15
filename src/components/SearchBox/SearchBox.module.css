@@ -17,27 +17,3 @@
     left: 13px;
     top: 48px;
 }
-
-input {
-
-    padding: 6px 6px 6px 22px;
-    outline: none;
-    box-shadow: 1px 1px 3px rgb(183, 186, 188);
-    border: 1px solid rgb(208, 217, 224);
-    border-radius: 4px;
-    margin-bottom: 6px;
-}
-
-input:hover,
-input:focus,
-input:active {
-    border: 1px solid rgb(151, 156, 159);
-    background-color: transparent !important;
-    box-shadow: 1px 1px 3px rgb(130, 134, 136);
-
-}
-
-input:-internal-autofill-selected {
-    background-color: transparent !important;
-
-}

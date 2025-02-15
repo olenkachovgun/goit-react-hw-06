@@ -1,5 +1,6 @@
 .item {
     display: flex;
+    flex-direction: column;
     padding: 10px;
     border: 1px solid #acabab;
     border-radius: 4px;
@@ -12,6 +13,7 @@
 
 }
 
+
 .icon {
     width: 18px;
     height: 18px;
@@ -19,23 +21,31 @@
 
 }
 
-
-
 .contact {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+
 }
 
-.contact div {
+
+
+.contactBtn {
+    margin-top: 18px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    gap: 8px
 }
 
 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-width: 90px;
     border-radius: 8px;
-    border: 1px solid #ee2d2d;
-    padding: 6px 12px;
+    border: none;
+    padding: 6px;
     font-weight: 500;
     font-family: inherit;
     background-color: #f9f8f8;
@@ -43,8 +53,6 @@ button {
     transition: background-color 0.25s;
     box-shadow: 1px 1px 3px #ee2d2d;
     color: #c90606;
-
-
 }
 
 button:hover {

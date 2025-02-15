@@ -1,9 +1,12 @@
 import React from "react";
 import s from "./SearchBox.module.css";
 import { CiSearch } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/filtersSlice";
 
-const SearchBox = ({ value, onChange }) => {
-  console.log(value);
+const SearchBox = ({}) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={s.searchBox}>
       <label htmlFor="name">Find contacts by name</label>
@@ -11,8 +14,7 @@ const SearchBox = ({ value, onChange }) => {
         type="text"
         name="name"
         id="name"
-        value={value}
-        onChange={onChange}
+        onChange={(e) => dispatch(setFilter(e.target.value))}
         placeholder="Enter name"
       />
       <CiSearch className={s.iconSearch} />

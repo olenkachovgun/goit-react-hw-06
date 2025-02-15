@@ -20,6 +20,29 @@ label {
     gap: 6px;
 }
 
+input {
+    padding: 6px 6px 6px 22px;
+    outline: none;
+    box-shadow: 1px 1px 3px #b7babc;
+    border: 1px solid rgb(208, 217, 224);
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+input:hover,
+input:focus,
+input:active {
+    border: 1px solid rgb(151, 156, 159);
+    background-color: transparent !important;
+    box-shadow: 1px 1px 3px rgb(130, 134, 136);
+
+}
+
+input:-internal-autofill-selected {
+    background-color: transparent !important;
+
+}
+
 .btnAddContact {
     width: 150px;
     margin: 0 auto;
@@ -33,6 +56,7 @@ label {
     transition: background-color 0.25s;
     box-shadow: 1px 1px 3px #20f2f5;
     color: #0cd6d9;
+    text-align: center;
 
 }
 

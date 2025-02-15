@@ -3,8 +3,10 @@ import s from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
-
-const ContactForm = ({ newContact }) => {
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
+import { IoPersonAddSharp } from "react-icons/io5";
+const ContactForm = ({}) => {
   const patternNumber = /^(\d{3}-\d{2}-\d{2}|\d{7})$/;
   const patternName = /^[A-Za-zА-Яа-яЇїІіЄєҐґ]+$/;
 
@@ -24,9 +26,14 @@ const ContactForm = ({ newContact }) => {
     name: "",
     number: "",
   };
-  const hundleSubmit = (values, action) => {
-    console.log(values);
-    newContact(values);
+  const dispatch = useDispatch();
+  const onSubmit = (values, action) => {
+    const newContact = {
+      id: nanoid(),
+      name: values.name,
+      number: values.number,
+    };
+    dispatch(addContact(newContact));
     action.resetForm();
   };
 
@@ -34,7 +41,7 @@ const ContactForm = ({ newContact }) => {
     <div className={s.formContainer}>
       <Formik
         initialValues={initialValues}
-        onSubmit={hundleSubmit}
+        onSubmit={onSubmit}
         validationSchema={FeedbackSchema}
       >
         <Form>
@@ -49,6 +56,7 @@ const ContactForm = ({ newContact }) => {
             <ErrorMessage className={s.error} name="number" component="span" />
           </label>
           <button className={s.btnAddContact} type="submit">
+            <IoPersonAddSharp />
             Add contact
           </button>
         </Form>
