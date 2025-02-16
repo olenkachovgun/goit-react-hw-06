@@ -1,16 +1,19 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import s from "./Contact.module.css";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosContact } from "react-icons/io";
 import { FaSquarePhone } from "react-icons/fa6";
-import { deleteContact, editContact } from "../../redux/contactsSlice";
+import { deleteContact, editContact, like } from "../../redux/contactsSlice";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 
 const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
+  const item = useSelector((state) =>
+    state.contacts.items.find((item) => item.id === id)
+  );
   return (
     <li className={s.item}>
       <div>
@@ -38,8 +41,8 @@ const Contact = ({ name, number, id }) => {
             dispatch(
               editContact({
                 id,
-                name: prompt("Enter new name:"),
-                number: Number(prompt("Enter new number:")),
+                name: prompt(`Enter new name:${name}`) ?? name,
+                number: prompt("Enter new number:") ?? number,
               })
             )
           }
@@ -49,7 +52,8 @@ const Contact = ({ name, number, id }) => {
         </button>
         <button
           type="button"
-          // onClick={() => dispatch(deleteContact(id))}
+          onClick={() => dispatch(like({ id }))}
+          className={item.liked ? s.like : s.nolike}
         >
           <IoMdHeart />
           <span>Like</span>

@@ -2,28 +2,22 @@ import "./App.css";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox ";
 import ContactList from "./components/ContactList/ContactList";
-import { useDispatch, useSelector } from "react-redux";
-import { reset } from "./redux/contactsSlice";
+import { useSelector } from "react-redux";
 
+import { FaAddressBook } from "react-icons/fa";
 function App() {
-  const contacts = useSelector((state) => state.contacts.contacts.items);
-  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts.items);
+  //const dispatch = useDispatch();
   return (
     <div>
-      <h1>Phonebook</h1>
+      <div className="phonebook">
+        <FaAddressBook className="iconTitle" />
+        <h1>Phonebook</h1>
+      </div>
       <ContactForm />
-      <SearchBox />
-      <ContactList />
+      {contacts.length > 0 && <SearchBox />}
 
-      {contacts.length === 0 && (
-        <button
-          onClick={() => dispatch(reset())}
-          type="button"
-          className="btnReset"
-        >
-          Reset
-        </button>
-      )}
+      <ContactList />
     </div>
   );
 }
